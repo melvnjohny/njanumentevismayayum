@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Love</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #fce4ec; 
+  display: flex; 
+  flex-direction: column;
+  align-items: center;
+  margin: 0;
+  min-height: 100vh;
+  padding: 20px 10px; 
+  font-family: 'Lato', sans-serif;
+  gap: 20px;
+}
+
+.slide-container {
+  align-items: center;
+  background-color: #fff0f5; 
+  border-radius: 16px;
+  box-shadow: 0 15px 30px rgba(139, 0, 0, 0.15); 
+  display: flex;
+  flex-direction: column;
+  height: 720px; 
+  width: 1280px; 
+  max-width: 100%; 
+  justify-content: center;
+  overflow: hidden;
+  padding: 60px;
+  position: relative;
+  border: 1px solid #ffc1e3;
+}
+
+.slide-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at top right, rgba(255, 182, 193, 0.4), transparent 40%),
+              radial-gradient(circle at bottom left, rgba(255, 228, 225, 0.4), transparent 40%);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.slide-container > * {
+  position: relative;
+  z-index: 1;
+}
+
+
+h1, h2, h3 {
+  color: #8b0000; 
+  font-family: 'Playfair Display', serif;
+  margin: 0;
+}
+
+h1 {
+  font-size: 90px;
+  font-style: italic;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+.slide-title {
+  font-size: 52px;
+  margin-bottom: 40px;
+  text-align: left;
+  width: 100%;
+  border-bottom: 2px solid #ffb6c1; 
+  padding-bottom: 15px;
+}
+
+p, li, .subtitle {
+  color: #5d4037; 
+  font-size: 22px;
+  line-height: 1.6;
+}
+
+.subtitle {
+  font-size: 28px;
+  font-weight: 300;
+  color: #b71c1c;
+}
+
+
+.content-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  width: 100%;
+}
+
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  width: 100%;
+  align-items: center;
+}
+
+.image-wrapper {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  height: 400px;
+  width: 100%;
+}
+
+.image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+.rounded-image-layout .image-wrapper {
+  border-radius: 50%;
+  width: 400px;
+  height: 400px;
+  margin: 0 auto;
+  border: 8px solid #fff;
+  box-shadow: 0 0 20px rgba(139,0,0,0.1);
+}
+
+
+.tiled-content {
+  display: flex;
+  gap: 30px;
+  width: 100%;
+  justify-content: center;
+}
+
+.tile {
+  background: #fff;
+  padding: 30px;
+  border-radius: 12px;
+  flex: 1;
+  text-align: center;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+  border: 1px solid #ffe4e1;
+}
+
+.tile .icon {
+  font-size: 48px;
+  color: #e91e63; 
+  margin-bottom: 20px;
+}
+
+
+.timeline-layout {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  position: relative;
+  align-items: flex-start;
+  padding-top: 40px;
+}
+
+.timeline-layout::before {
+  content: '';
+  position: absolute;
+  top: 55px;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: #ffc1e3;
+  z-index: 0;
+}
+
+.timeline-item {
+  width: 22%;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.timeline-marker {
+  width: 30px;
+  height: 30px;
+  background: #e91e63;
+  border-radius: 50%;
+  margin: 0 auto 20px;
+  border: 4px solid #fff;
+  box-shadow: 0 0 0 4px #ffc1e3;
+}
+
+
+.quote-layout blockquote {
+  font-family: 'Playfair Display', serif;
+  font-size: 48px;
+  color: #880e4f;
+  text-align: center;
+  font-style: italic;
+  position: relative;
+  max-width: 800px;
+}
+
+
+.slide-container.bleed-image-layout {
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+}
+
+.slide-container.bleed-image-layout .content-container {
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+}
+
+.slide-container.bleed-image-layout .image-container {
+  height: 100%;
+  width: 100%;
+}
+
+.slide-container.bleed-image-layout img.bleed-image-side {
+  width: 100%;
+  height: 720px;
+  object-fit: cover;
+}
+
+
+.chart-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.area-chart-svg {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.image-tile .image-wrapper {
+  height: 250px;
+  margin-bottom: 15px;
+}
+
+.jeor {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.image-wrapper2 {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+  height: 250px;
+  width: 250px;
+  flex-shrink: 1; 
+}
+
+.image-wrapper2 img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+
+@media screen and (max-width: 900px) {
+    
+    .slide-container {
+        width: 100%;
+        height: auto; 
+        min-height: auto; 
+        padding: 30px 20px;
+        margin-bottom: 20px;
+        overflow: visible;
+    }
+
+
+    h1 { font-size: 42px; word-wrap: break-word;}
+    .slide-title { font-size: 32px; text-align: center; }
+    p, li { font-size: 18px; }
+    .subtitle { font-size: 20px; }
+    
+    .quote-layout blockquote { font-size: 28px; }
+
+
+    .two-column {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .image-wrapper {
+        height: 250px; 
+        width: 100%;
+    }
+    
+    .jeor {
+        flex-wrap: wrap; 
+        gap: 10px;
+    }
+    
+    .image-wrapper2 {
+        width: 45%; 
+        height: 150px;
+    }
+
+    .timeline-layout {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+        padding-top: 0;
+    }
+    
+    .timeline-layout::before {
+        display: none;
+    }
+    
+    .timeline-item {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .slide-container.bleed-image-layout {
+        display: flex;
+        flex-direction: column-reverse; 
+    }
+    
+    .slide-container.bleed-image-layout .content-container {
+        padding: 30px 20px;
+        height: auto;
+    }
+    
+    .slide-container.bleed-image-layout img.bleed-image-side {
+        height: 300px;
+    }
+
+    .tiled-content {
+        flex-direction: column;
+    }
+    
+    .rounded-image-layout .image-wrapper {
+        width: 250px;
+        height: 250px;
+    }
+    
+    .two-column > div {
+        margin-bottom: 30px;
+    }
+
+    .chart-container {
+        width: 100%;
+    }
+    
+    #slide15 {
+        min-height: 400px;
+    }
+}
+    </style>
+</head>
+<body>
+
+<div class="slide-container" id="slide1">
+    <div class="content-area" style="text-align: center;">
+        <h1>Happy Valentine's Day</h1>
+        <p class="subtitle">To the love of my life, my best friend, and my vedala.</p>
+        <div style="font-size: 60px; color: #e91e63; margin-top: 30px;"><i class="fa-solid fa-heart"></i></div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide2">
+    <h2 class="slide-title">To My Dearest</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <p>Vedalee, from the moment you walked into my life, everything changed for the better. Your smile lights up my darkest days, and your love gives me strength I never knew I had.</p>
+                <p>I made this as a small way to show you how much you mean to me.</p>
+            </div>
+            <div class="image-wrapper">
+                <img src="facing.jpg" alt="Us Facing Each Other">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide6">
+    <div class="content-area quote-layout">
+        <blockquote>
+            "I seem to have loved you in numberless forms, numberless times, in life after life, in age after age forever."
+        </blockquote>
+    </div>
+</div>
+
+<div class="slide-container" id="slide3">
+    <h2 class="slide-title">Our Beautiful Journey</h2>
+
+
+    <div class="content-area">
+        <div class="timeline-layout">
+            <div class="timeline-item">
+                <div class="image-wrapper2">
+                    <img src="laughClass.jpg" >
+                </div>
+                <h3>College</h3>
+                <p>The place where our life began.</p>
+            </div>
+            <div class="timeline-item">
+                <div class="image-wrapper2">
+                    <img src="taj.jpg" >
+                </div>
+                <h3>Taj Mahal</h3>
+                <p>In front of the great monument of love</p>
+            </div>
+            <div class="timeline-item">
+                <div class="image-wrapper2">
+                    <img src="waterfall.jpg" >
+                </div>
+                <h3>Manali</h3>
+                <p>At the coldest place, You gave me the heat of love</p>
+            </div>
+            <div class="timeline-item">
+                <div class="image-wrapper2">
+                    <img src="Bite.jpg" >
+                </div>
+                <h3>Bangalore</h3>
+                <p>A place where we can finally be ourselves all day.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="slide-container" id="slide10">
+    <h2 class="slide-title">My Love For You</h2>
+    <div class="content-area">
+        <div class="chart-container">
+             <svg class="area-chart-svg" viewBox="0 0 1000 400">
+                <defs>
+                    <linearGradient id="love-gradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                        <stop offset="0%" style="stop-color:#e91e63;" stop-opacity="0.6"></stop>
+                        <stop offset="100%" style="stop-color:#e91e63;" stop-opacity="0.1"></stop>
+                    </linearGradient>
+                </defs>
+                <line x1="0" y1="350" x2="1000" y2="350" stroke="#e0e0e0" stroke-width="2"></line>
+                <line x1="0" y1="0" x2="0" y2="350" stroke="#e0e0e0" stroke-width="2"></line>
+                
+                <path fill="url(#love-gradient)" d="M 0 350 Q 250 340 500 250 T 1000 50 L 1000 350 Z"></path>
+                <path fill="none" stroke="#ad1457" stroke-width="5" d="M 0 350 Q 250 340 500 250 T 1000 50"></path>
+
+                <text x="50" y="380" font-family="Lato" fill="#880e4f" font-size="20">Then</text>
+                <text x="500" y="380" font-family="Lato" fill="#880e4f" font-size="20">Now</text>
+                <text x="950" y="380" font-family="Lato" fill="#880e4f" font-size="20">Forever</text>
+            </svg>
+        </div>
+        <p style="text-align: center; margin-top: 20px; font-style: italic;">Just like this chart, my love for you only grows stronger with every passing day.</p>
+    </div>
+</div>
+
+<div class="slide-container" id="slide4">
+    <h2 class="slide-title">Captured Moments</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="image-tile">
+                <div class="image-wrapper">
+                    <img src="palace.jpg" alt="Palace">
+                </div>
+            </div>
+            <div class="image-tile">
+                <div class="image-wrapper">
+                    <img src="shop.jpg" alt="Head on Lap">
+                </div>
+            </div>
+            <div class="image-tile">
+                <div class="image-wrapper">
+                    <img src="church.jpg" alt="Church">
+                </div>
+            </div>
+            <div class="image-tile">
+                <div class="image-wrapper">
+                    <img src="theatre.jpg" alt="Theatre">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide5">
+    <h2 class="slide-title">Things I Adore About You</h2>
+    <div class="content-area">
+        <div class="tiled-content">
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-face-smile-beam"></i></div>
+                <h3>Your Smile</h3>
+                <p>It's the most beautiful curve that sets everything straight in my world.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-heart-pulse"></i></div>
+                <h3>Your Kindness</h3>
+                <p>The way you treat me makes me feel that I am your little boy.</p>
+            </div>
+            <div class="tile">
+                <div class="icon"><i class="fa-solid fa-music"></i></div>
+                <h3>Your Laugh</h3>
+                <p>My absolute favorite sound. I can live my whole life by hearing only that.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="slide-container bleed-image-layout" id="slide7">
+    <div class="content-container">
+        <h2 class="slide-title">Our Greatest Adventures</h2>
+        <p>Whether we are climbing mountains, exploring new cities, or just walking in the park, every step with you is an adventure I cherish.</p>
+        <p>I can't wait to go and explore everything new with you. For me, any trip with my vedala is my best trip</p>
+    </div>
+    <div class="image-container">
+        <img class="bleed-image-side" src="holdHill.jpg" alt="Holding Hands Hill">
+    </div>
+</div>
+
+
+
+<div class="slide-container" id="slide9">
+    <h2 class="slide-title">Love by the Numbers</h2>
+    <div class="content-area">
+        <div class="two-column" style="text-align: center;">
+            <div>
+                <div style="font-size: 120px; font-weight: 700; color: #e91e63; font-family: 'Playfair Display';">100%</div>
+                <p style="font-size: 24px; font-weight: bold;">My Heart is Yours</p>
+            </div>
+            <div>
+                <div style="font-size: 120px; font-weight: 700; color: #e91e63; font-family: 'Playfair Display';">∞</div>
+                <p style="font-size: 24px; font-weight: bold;">Memories to Make</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="slide-container" id="slide8">
+    <h2 class="slide-title">Hand in Hand</h2>
+    <div class="content-area">
+        <div class="two-column rounded-image-layout">
+            <div class="image-wrapper">
+                <img src="holdPark.jpg" alt="Holding Hands Park">
+            </div>
+            <div>
+                <h3>Never Letting Go</h3>
+                <p>There is a special comfort in holding your hand. It's a silent promise that I am here, you are safe, and we are in this together.</p>
+                <p>I promise to hold your hand through the storms and the sunshine.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="slide-container" id="slide11">
+    <h2 class="slide-title">Dreams & Promises</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div class="tile" style="text-align: left;">
+                <h3><i class="fa-solid fa-plane-departure" style="color: #e91e63; margin-right: 10px;"></i> Our Dreams</h3>
+                <p>To travel the world, build a beautiful home, and create a life filled with laughter, peace, and endless love.</p>
+            </div>
+            <div class="tile" style="text-align: left;">
+                <h3><i class="fa-solid fa-ring" style="color: #e91e63; margin-right: 10px;"></i> My Promise</h3>
+                <p>To always listen, to always support you, to always be your vedala and to be your favourite person no matter what life throws our way.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide12">
+    <h2 class="slide-title">Why You Are Perfect</h2>
+    <div class="content-area">
+        <ul style="list-style: none; padding: 0;">
+            <li style="margin-bottom: 25px; display: flex; align-items: center;">
+                <i class="fa-solid fa-star" style="color: #fbc02d; font-size: 28px; margin-right: 20px;"></i>
+                You have the most beautiful soul I've ever known.
+            </li>
+            <li style="margin-bottom: 25px; display: flex; align-items: center;">
+                <i class="fa-solid fa-star" style="color: #fbc02d; font-size: 28px; margin-right: 20px;"></i>
+                You always listen to my silly words and laugh with me.
+            </li>
+            <li style="margin-bottom: 25px; display: flex; align-items: center;">
+                <i class="fa-solid fa-star" style="color: #fbc02d; font-size: 28px; margin-right: 20px;"></i>
+                You make every moment with you special for me.
+            </li>
+            <li style="margin-bottom: 25px; display: flex; align-items: center;">
+                <i class="fa-solid fa-star" style="color: #fbc02d; font-size: 28px; margin-right: 20px;"></i>
+                You forgives all my mistakes in a second with a cute Mmmuuaahh
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="slide-container" id="slide13">
+    <h2 class="slide-title">Life-long Laughs</h2>
+    <div class="content-area">
+        <div class="two-column">
+            <div>
+                <p>Laughter is the best medicine, and you are my daily dose. You makes me happy with your jokes and the silly faces. They are the moments of pure joy for me.</p>
+                <p>Life is simply more fun with you.</p>
+            </div>
+            <div class="image-wrapper">
+                 <img src="laughHill.jpg" alt="Laughing Hill">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="slide-container" id="slide14">
+    <div class="content-area" style="text-align: center;">
+        <hr style="width: 100px; border: 3px solid #e91e63; margin-bottom: 30px;">
+        <h2>My Vow to You</h2>
+        <p style="max-width: 800px; margin: 30px auto;">Ennum koode kaanum njan. Enthokke vannalum. Eji ente jeevan aa.<br> Orikkalum eje vitt povulla njan.<br> Love you ente vippeee</p>
+        <hr style="width: 100px; border: 3px solid #e91e63; margin-top: 30px;">
+    </div>
+</div>
+
+<div class="slide-container" id="slide15" style="background-image: url('http://googleusercontent.com/image_collection/image_retrieval/5289595322131246983'); background-size: cover; background-position: center;">
+    <div class="content-area" style="background: rgba(0,0,0,0.4); padding: 40px; border-radius: 12px; text-align: center;">
+        <h1 style="color: #fff; text-shadow: 2px 2px 4px rgba(0,0,0,0.5);">I Love You</h1>
+        <p style="color: #fff; font-size: 32px; margin-top: 20px;">Forever & Always</p>
+    </div>
+</div>
+
+</body>
+</html>
